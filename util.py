@@ -1,9 +1,29 @@
 import json
+import time
 import os
 class Utils:
+    def __init__(self,file_path):
+        self.file_path = file_path
 
-    
-   
+    def get_number_of_problems(self):
+         with open(self.file_path, 'r') as file:
+            data = json.load(file)
+            return len(data)        
+            
+    def display_progress_bar(self, problem_number, problem_treated_num):
+        if problem_number == 0:
+            percentage = 100
+        else:
+            percentage = (problem_treated_num / problem_number) * 100
+        
+        progress_bar_length = 50
+
+        num_dashes = int((percentage / 100) * progress_bar_length)
+        
+        progress_bar = "-" * num_dashes + " " * (progress_bar_length - num_dashes)
+        
+        print(f"\r[{progress_bar}] {percentage:.2f}%", end="")
+
     def ExtractProblemName(self, text):
         if not text:
             return None
@@ -21,8 +41,8 @@ class Utils:
         
         return None
     
-    def remove_duplicates_from_json(self, file_path):
-        with open(file_path, 'r') as file:
+    def remove_duplicates_from_json(self):
+        with open(self.file_path, 'r') as file:
             data = json.load(file)
 
         if isinstance(data, list):
@@ -40,12 +60,12 @@ class Utils:
             print("Unsupported JSON format. The data must be a list of dictionaries.")
             return
 
-        with open(file_path, 'w') as file:
+        with open(self.file_path, 'w') as file:
             json.dump(data, file, indent=4)
 
 
-    def create_folders(self, file_path):
-        with open(file_path, 'r') as file:
+    def create_folders(self):
+        with open(self.file_path, 'r') as file:
             data = json.load(file)
 
         base_path = "./problemset"
@@ -68,8 +88,6 @@ class Utils:
                 print(f"Created folder and file for problem: {problem_name}")
             except Exception as e:
                 print(f"Error: {e}")
-
-util = Utils()
 
 # # Call the ExtractProblemName method
 # problem_name = util.ExtractProblemName("1 year, 5 months ago Merge Two Sorted Lists Accepted 8 ms cpp")
