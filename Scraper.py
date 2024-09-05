@@ -66,31 +66,31 @@ class Scraper:
             return None
         
         helper = Utils()
-        c = 1
+        page_counter = 1
         problems = []
         with open('./problems.json', 'w') as fichier:
             while True:
-                self.driver.get(f"https://leetcode.com/submissions/#/{c}")
+                self.driver.get(f"https://leetcode.com/submissions/#/{page_counter}")
 
                 time.sleep(5)
 
                 table_rows = self.driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
 
                 if not table_rows:
-                    print("No more rows found at page:", c)
+                    print("No more rows found at page:", page_counter)
                     break
 
                 data_row, has_data = self.get_problems(table_rows)
 
                 if has_data:
-                    print(f"Data found on page {c}:")
-                    problems.extend(self.extract_problems(data_row))  # Changed to extend list
+                    print(f"Data found on page {page_counter}:")
+                    problems.extend(self.extract_problems(data_row))  
                 
                 else:
-                    print(f"No data at page {c}")
+                    print(f"No data at page {page_counter}")
                     break
                 
-                c += 1
+                page_counter += 1
         
             json.dump(problems, fichier, indent=4)
 
