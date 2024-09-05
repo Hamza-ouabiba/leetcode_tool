@@ -11,7 +11,7 @@ class Scraper:
         self.helper = Utils(file_path)
 
     def write_code_solution(self):
-        with open('./problems.json', 'r+') as fichier:
+        with open(self.file_path, 'r+') as fichier:
             data = json.load(fichier)
             treated_num = 0
             for row in data:
@@ -70,7 +70,7 @@ class Scraper:
         
         page_counter = 1
         problems = []
-        with open('./problems.json', 'w') as fichier:
+        with open(self.file_path, 'w') as fichier:
             while True:
                 self.driver.get(f"https://leetcode.com/submissions/#/{page_counter}")
 
