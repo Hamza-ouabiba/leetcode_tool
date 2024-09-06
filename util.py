@@ -1,6 +1,6 @@
 import json
 import os
-import subprocess
+
 class Utils:
     def __init__(self,file_path):
         self.file_path = file_path
@@ -68,7 +68,7 @@ class Utils:
         with open(self.file_path, 'r') as file:
             data = json.load(file)
 
-        base_path = "./problemset"
+        base_path = "../problemset"
 
         if not os.path.exists(base_path):
             os.makedirs(base_path)

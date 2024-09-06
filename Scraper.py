@@ -16,7 +16,6 @@ class Scraper:
             treated_num = 0
             for row in data:
                 problem_num = self.helper.get_number_of_problems()
-                self.helper.display_progress_bar(problem_number=problem_num,problem_treated_num=treated_num)
                 self.driver.get(row['url'])
                 time.sleep(5) 
                 
@@ -29,6 +28,7 @@ class Scraper:
                 
                 row['code'] = code.strip()
                 treated_num += 1
+                self.helper.display_progress_bar(problem_number=problem_num,problem_treated_num=treated_num)
             fichier.seek(0)
     
             json.dump(data, fichier, indent=4)
