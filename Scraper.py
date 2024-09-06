@@ -102,7 +102,6 @@ class Scraper:
         self.write_code_solution()
         # Then create directories for each problem
         self.helper.create_folders()
-
         if self.driver:
             self.driver.quit()
 

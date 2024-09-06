@@ -1,6 +1,6 @@
 import json
-import time
 import os
+import subprocess
 class Utils:
     def __init__(self,file_path):
         self.file_path = file_path
@@ -75,7 +75,7 @@ class Utils:
 
         for row in data:
             try:
-                problem_name = row['problem']
+                problem_name = row['problem'].replace(' ', '_')
                 problem_path = os.path.join(base_path, problem_name)
                 
                 if not os.path.exists(problem_path):
@@ -89,8 +89,6 @@ class Utils:
             except Exception as e:
                 print(f"Error: {e}")
 
-# # Call the ExtractProblemName method
 # problem_name = util.ExtractProblemName("1 year, 5 months ago Merge Two Sorted Lists Accepted 8 ms cpp")
-# print("Extracted Problem Name:", problem_name)
-
+# print("prob name:", problem_name)
 #util.create_folders('./problems.json')
