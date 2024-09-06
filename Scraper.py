@@ -39,8 +39,9 @@ class Scraper:
         problems = []
         for data in data_row:
             problem_name = self.helper.ExtractProblemName(data['line'])
+            language = self.helper.extract_language_name(data['line'])
             if problem_name:
-                problems.append({'problem': problem_name, 'state': 'Accepted', 'url': data['url']})
+                problems.append({'problem': problem_name, 'state': 'Accepted', 'url': data['url'],'language': language})
         return problems
 
     def get_problems(self, table_rows):

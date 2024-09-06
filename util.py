@@ -41,6 +41,15 @@ class Utils:
         
         return None
     
+    def extract_language_name(self, text):
+        if not text:
+            return None
+        
+        text_splitted = text.split(' ')
+
+        return text_splitted[-1]
+        
+
     def remove_duplicates_from_json(self):
         with open(self.file_path, 'r') as file:
             data = json.load(file)
@@ -63,6 +72,15 @@ class Utils:
         with open(self.file_path, 'w') as file:
             json.dump(data, file, indent=4)
 
+    def get_language_suffix(self, language):
+        language_suffixes = { # i generally code either with python or cpp or c in worst case lol but you can extended this dict as you wish
+            "cpp": "cpp",
+            "python": "py",
+            "python3": "py",
+            "c": "c",
+        }
+
+        return language_suffixes.get(language, "txt") # txt for default 
 
     def create_folders(self):
         with open(self.file_path, 'r') as file:
@@ -81,7 +99,9 @@ class Utils:
                 if not os.path.exists(problem_path):
                     os.makedirs(problem_path)
                 
-                file_path = os.path.join(problem_path, 'int.cpp')
+                language_suffix = self.get_language_suffix(row['language'])
+                file_name = "solution." + language_suffix
+                file_path = os.path.join(problem_path, file_name)
                 with open(file_path, 'w') as file:
                     file.write(row['code'])
                 
@@ -89,6 +109,7 @@ class Utils:
             except Exception as e:
                 print(f"Error: {e}")
 
-# problem_name = util.ExtractProblemName("1 year, 5 months ago Merge Two Sorted Lists Accepted 8 ms cpp")
-# print("prob name:", problem_name)
+util = Utils('./problems.json ')
+problem_name = util.extract_language_name("1 year, 5 months ago Merge Two Sorted Lists Accepted 8 ms python")
+print("prob name:", problem_name)
 #util.create_folders('./problems.json')
