@@ -20,7 +20,7 @@ class Scraper:
                 time.sleep(5) 
                 
                 code_container = self.driver.find_element(By.CSS_SELECTOR, "div.ace_layer.ace_text-layer")
-                code_lines = code_container.find_elements(By.CSS_SELECTOR, "div.ace_line")
+                code_lines = code_container.find_elements(By.CSS_SELECTOR, "div.ace_line_group")
                 
                 code = ""
                 for line in code_lines:
