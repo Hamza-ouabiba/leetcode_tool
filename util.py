@@ -132,8 +132,3 @@ class Utils:
                 print(f"Created folder and file for problem: {problem_name}")
             except Exception as e:
                 print(f"Error: {e}")
-
-util = Utils('./problems.json ')
-problem_name = util.extract_language_name("1 year, 5 months ago Merge Two Sorted Lists Accepted 8 ms python")
-print("prob name:", problem_name)
-#util.create_folders('./problems.json')
