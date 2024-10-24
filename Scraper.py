@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import time
 import json
 from util import Utils
+from browser import choose_browser
 
 class Scraper:
     def __init__(self,file_path):
@@ -61,9 +62,10 @@ class Scraper:
         return data_row, has_data
 
     def Authenticate(self):
-        self.driver = webdriver.Chrome()
+        self.driver = choose_browser()
+        print("Please log in manually, then press Enter to continue...")
         self.driver.get("https://leetcode.com/accounts/login/")
-        input("Please log in manually, then press Enter to continue...")
+        input("Please press Enter to continue once you are logged in...")
     
     def extract_data(self):
         if not self.driver:
