@@ -78,6 +78,30 @@ class Utils:
             "python": "py",
             "python3": "py",
             "c": "c",
+            "java": "java",
+            "javascript": "js",
+            "typescript": "ts",
+            "ruby": "rb",
+            "swift": "swift",
+            "golang": "go",
+            "kotlin": "kt",
+            "rust": "rs",
+            "php": "php",
+            "scala": "scala",
+            "racket": "rkt",
+            "erlang": "erl",
+            "elixir": "ex",
+            "haskell": "hs",
+            "perl": "pl",
+            "dart": "dart",
+            "bash": "sh",
+            "mysql": "sql",
+            "mssql": "sql",
+            "oraclesql": "sql",
+            "csharp": "cs",
+            "vb": "vb",
+            "objectivec": "m",
+            "groovy": "groovy"
         }
 
         return language_suffixes.get(language, "txt") # txt for default 
@@ -86,7 +110,7 @@ class Utils:
         with open(self.file_path, 'r') as file:
             data = json.load(file)
 
-        base_path = "../problemset"
+        base_path = "./problemset"
 
         if not os.path.exists(base_path):
             os.makedirs(base_path)

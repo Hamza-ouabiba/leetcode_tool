@@ -60,10 +60,31 @@ class Scraper:
                     break 
         return data_row, has_data
 
+    def choose_browser(self):
+        print("Choose a browser to use:")
+        print("1. Chrome")
+        print("2. Firefox")
+        print("3. Edge")
+        print("4. Safari")
+        
+        choice = input("Enter the number of the browser: ")
+        
+        if choice == '1':
+            self.driver = webdriver.Chrome()
+        elif choice == '2':
+            self.driver = webdriver.Firefox()
+        elif choice == '3':
+            self.driver = webdriver.Edge()
+        elif choice == '4':
+            self.driver = webdriver.Safari()
+        else:
+            print("Invalid choice, using Chrome as default.")
+            self.driver = webdriver.Chrome()
+
     def Authenticate(self):
-        self.driver = webdriver.Chrome()
-        self.driver.get("https://leetcode.com/accounts/login/")
+        self.choose_browser()
         input("Please log in manually, then press Enter to continue...")
+        self.driver.get("https://leetcode.com/accounts/login/")
     
     def extract_data(self):
         if not self.driver:
